@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">Launcher</string>
+
+    <string name="search_apps_hint">Search Apps…</string>
+
+    <string name="google_play_store_search_button">Search on Google Play Store</string>
+
+</resources>

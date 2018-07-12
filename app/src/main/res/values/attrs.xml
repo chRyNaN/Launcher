@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DynamicGridView">
+        <attr name="spanColumnSize" format="dimension"/>
+        <attr name="spanRowSize" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="SingleRowGridView">
+        <attr name="gridItemSize" format="dimension"/>
+        <attr name="gridItemHorizontalPadding" format="dimension"/>
+        <attr name="gridItemVerticalPadding" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="DockView">
+        <attr name="includeBottomNavBar" format="boolean"/>
+        <attr name="dockItemHeight" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="LauncherItemView">
+        <attr name="iconSize" format="dimension"/>
+        <attr name="badgeSmallSize" format="dimension"/>
+        <attr name="badgeLargeSize" format="dimension"/>
+        <attr name="defaultBadgeColor" format="color"/>
+        <attr name="folderBackgroundColor" format="color"/>
+        <attr name="textColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="IndicatorView">
+        <attr name="indicatorWidth" format="dimension"/>
+        <attr name="indicatorHeight" format="dimension"/>
+        <attr name="indicatorPadding" format="dimension"/>
+        <attr name="selectedIndicatorColor" format="color"/>
+        <attr name="unselectedIndicatorColor" format="color"/>
+    </declare-styleable>
+
+</resources>

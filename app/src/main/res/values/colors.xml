@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_50_percent">#80FFFFFF</color>
+
+    <color name="badge_default_color">@color/white</color>
+    <color name="dock_background_color">@color/white_50_percent</color>
+    <color name="navigation_bar_color">@color/white_50_percent</color>
+    <color name="launcher_item_view_default_folder_background_color">@color/white_50_percent</color>
+    <color name="launcher_item_view_default_text_color">@color/white</color>
+
+    <color name="indicator_view_default_selected_indicator_color">@color/white</color>
+    <color name="indicator_view_default_unselected_indicator_color">@color/white_50_percent</color>
+
+</resources>

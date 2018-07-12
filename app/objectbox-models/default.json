@@ -1,0 +1,114 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:2501940548839287508",
+      "lastPropertyId": "5:4268995683839661590",
+      "name": "AppMaskEntity",
+      "properties": [
+        {
+          "id": "1:1480924170861037882",
+          "name": "databaseId"
+        },
+        {
+          "id": "3:5273012680229030336",
+          "name": "packageName"
+        },
+        {
+          "id": "4:4143666128941345198",
+          "name": "maskedName"
+        },
+        {
+          "id": "5:4268995683839661590",
+          "name": "maskedIconFileName"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:6898935933603149456",
+      "lastPropertyId": "3:714194247388135057",
+      "name": "FeedTypeEntity",
+      "properties": [
+        {
+          "id": "1:6254275348617504251",
+          "name": "databaseId"
+        },
+        {
+          "id": "2:1464873861883015493",
+          "name": "type"
+        },
+        {
+          "id": "3:714194247388135057",
+          "name": "url"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:705369598441655267",
+      "lastPropertyId": "3:4594396781227065484",
+      "name": "FeedSettingsEntity",
+      "properties": [
+        {
+          "id": "1:3429690677038477420",
+          "name": "databaseId"
+        },
+        {
+          "id": "2:4077910239854617455",
+          "name": "webSource"
+        },
+        {
+          "id": "3:4594396781227065484",
+          "indexId": "1:9133747944667081153",
+          "name": "typeEntityId"
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:3541595413956911867",
+          "name": "restrictionEntities"
+        }
+      ]
+    },
+    {
+      "id": "4:6524351386077781011",
+      "lastPropertyId": "4:3598746642611597888",
+      "name": "FeedRestrictionEntity",
+      "properties": [
+        {
+          "id": "1:7331837693814433863",
+          "name": "databaseId"
+        },
+        {
+          "id": "2:4337915869307773660",
+          "name": "type"
+        },
+        {
+          "id": "3:4880364209528587893",
+          "name": "packageName"
+        },
+        {
+          "id": "4:3598746642611597888",
+          "name": "intentType"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:6524351386077781011",
+  "lastIndexId": "1:9133747944667081153",
+  "lastRelationId": "1:3541595413956911867",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    8443050754199919232
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

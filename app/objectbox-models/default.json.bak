@@ -1,0 +1,64 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:2501940548839287508",
+      "lastPropertyId": "5:4268995683839661590",
+      "name": "AppMaskEntity",
+      "properties": [
+        {
+          "id": "1:1480924170861037882",
+          "name": "databaseId"
+        },
+        {
+          "id": "3:5273012680229030336",
+          "name": "packageName"
+        },
+        {
+          "id": "4:4143666128941345198",
+          "name": "maskedName"
+        },
+        {
+          "id": "5:4268995683839661590",
+          "name": "maskedIconFileName"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:6898935933603149456",
+      "lastPropertyId": "3:714194247388135057",
+      "name": "FeedTypeEntity",
+      "properties": [
+        {
+          "id": "1:6254275348617504251",
+          "name": "databaseId"
+        },
+        {
+          "id": "2:1464873861883015493",
+          "name": "type"
+        },
+        {
+          "id": "3:714194247388135057",
+          "name": "url"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:6898935933603149456",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    8443050754199919232
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

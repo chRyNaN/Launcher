@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iconImageView"
+        android:layout_width="@dimen/icon_large_size_default"
+        android:layout_height="@dimen/icon_large_size_default"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/content_description_app_icon"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/badgeImageView"
+        android:layout_width="@dimen/badge_large_size_default"
+        android:layout_height="@dimen/badge_large_size_default"
+        android:elevation="@dimen/badge_elevation"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@+id/iconImageView"
+        app:layout_constraintTop_toTopOf="@+id/iconImageView"/>
+
+    <ImageView
+        android:id="@+id/shortcutBadgeImageView"
+        android:layout_width="@dimen/badge_large_size_default"
+        android:layout_height="@dimen/badge_large_size_default"
+        android:elevation="@dimen/badge_elevation"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/iconImageView"
+        app:layout_constraintEnd_toEndOf="@+id/iconImageView"/>
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xsmall"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textSize="@dimen/text_size_xsmall"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconImageView"/>
+
+</merge>
