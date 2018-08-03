@@ -34,8 +34,6 @@ class AppListFragment : BaseFragment(),
     companion object {
 
         private const val DEBOUNCE_INPUT_MILLISECONDS = 250L
-
-        fun newInstance() = AppListFragment()
     }
 
     override val listenerVariableId: Int = BR.listener

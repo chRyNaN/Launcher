@@ -1,7 +1,5 @@
 package com.chrynan.launcher.ui.activity
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.view.View
 import com.chrynan.launcher.R
@@ -28,12 +26,9 @@ class MainActivity : BaseActivity(),
     @Inject
     lateinit var adapter: MainPagerAdapter
 
-    private lateinit var binder: ViewDataBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binder = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
         setupWindow()
 
