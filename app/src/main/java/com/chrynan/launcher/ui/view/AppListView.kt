@@ -1,8 +1,24 @@
 package com.chrynan.launcher.ui.view
 
-import com.chrynan.launcher.model.AppListState
-
 interface AppListView {
 
-    fun updateState(state: AppListState)
+    fun showList()
+
+    fun hideList()
+
+    fun showInput()
+
+    fun hideInput()
+
+    fun showLoadingIndicator()
+
+    fun hideLoadingIndicator()
+
+    fun showNoResults()
+
+    fun hideNoResults()
+
+    fun showNoApps()
+
+    fun hideNoApps()
 }

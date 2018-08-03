@@ -2,12 +2,12 @@ package com.chrynan.launcher.presenter
 
 import android.content.Context
 import com.chrynan.launcher.R
+import com.chrynan.launcher.binder.AppListBinder
 import com.chrynan.launcher.logging.Loggable
 import com.chrynan.launcher.logging.Logger
 import com.chrynan.launcher.model.*
 import com.chrynan.launcher.ui.adapter.core.DiffProcessor
 import com.chrynan.launcher.ui.adapter.core.ListUpdater
-import com.chrynan.launcher.ui.view.AppListView
 import com.chrynan.launcher.usecase.GetAllAppListViewModelsUseCase
 import com.chrynan.launcher.usecase.SearchForApplicationByNameUseCase
 import io.reactivex.Completable
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class AppListPresenter @Inject constructor(
         private val context: Context,
-        private val view: AppListView,
+        private val binder: AppListBinder,
         private val getAllAppListViewModelsUseCase: GetAllAppListViewModelsUseCase,
         private val searchForApplicationByNameUseCase: SearchForApplicationByNameUseCase,
         private val listUpdater: ListUpdater,
@@ -31,8 +31,6 @@ class AppListPresenter @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
 
-    private var fullAppList: List<AdapterViewModel> = emptyList()
-
     override fun detach() {
         compositeDisposable.clear()
     }
@@ -41,13 +39,12 @@ class AppListPresenter @Inject constructor(
         compositeDisposable.add(
                 getAllAppListViewModelsUseCase.execute()
                         .map { diffProcessor.process(it) }
-                        .doOnSuccess { fullAppList = diffProcessor.newList }
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doOnSubscribe { view.updateState(LoadingState) }
+                        .doOnSubscribe { binder.bind(LoadingState) }
                         .subscribe({
-                            listUpdater.updateItems(it, fullAppList)
-                            view.updateState(if (fullAppList.isEmpty()) NoAppsState else ListState)
+                            listUpdater.updateItems(it, diffProcessor.newList)
+                            binder.bind(if (diffProcessor.newList.isEmpty()) NoAppsState else ListState)
                         }, { logError(it, "Error retrieving all applications.") })
         )
     }
@@ -59,10 +56,8 @@ class AppListPresenter @Inject constructor(
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSuccess { listUpdater.updateItems(it, diffProcessor.newList) }
-                    .doOnSuccess {
-                        view.updateState(if (diffProcessor.newList.isEmpty()) NoResultsState else ListState)
-                    }
+                    .doOnSuccess { binder.bind(if (diffProcessor.newList.isEmpty()) NoResultsState else ListState) }
                     .doOnError { logError(it, "Error searching for input: $input") }
-                    .toCompletable()
+                    .ignoreElement()
                     .onErrorComplete()
 }

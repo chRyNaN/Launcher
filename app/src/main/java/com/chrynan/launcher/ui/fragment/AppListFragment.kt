@@ -1,8 +1,6 @@
 package com.chrynan.launcher.ui.fragment
 
 import android.content.Intent
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,15 +9,14 @@ import android.view.ViewGroup
 import com.chrynan.launcher.BR
 import com.chrynan.launcher.R
 import com.chrynan.launcher.logging.Logger
-import com.chrynan.launcher.model.AppListState
 import com.chrynan.launcher.model.LauncherItem
 import com.chrynan.launcher.navigator.AppListNavigator
 import com.chrynan.launcher.presenter.AppListPresenter
-import com.chrynan.launcher.ui.grid.DynamicSpanGridLayoutManager
 import com.chrynan.launcher.ui.adapter.AppListAdapter
 import com.chrynan.launcher.ui.adapter.AppListSearchAdapter
 import com.chrynan.launcher.ui.adapter.core.AdapterViewTypes
 import com.chrynan.launcher.ui.adapter.core.ManagerAdapter
+import com.chrynan.launcher.ui.grid.DynamicSpanGridLayoutManager
 import com.chrynan.launcher.ui.view.AppListView
 import com.chrynan.launcher.util.virtualNavigationBarHeight
 import com.jakewharton.rxbinding2.widget.textChanges
@@ -54,13 +51,8 @@ class AppListFragment : BaseFragment(),
 
     private val compositeDisposable = CompositeDisposable()
 
-    private lateinit var binder: ViewDataBinding
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binder = DataBindingUtil.inflate(inflater, R.layout.fragment_app_list, container, false)
-
-        return binder.root
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_app_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView.apply {
@@ -98,11 +90,49 @@ class AppListFragment : BaseFragment(),
     override fun onDestroyView() {
         super.onDestroyView()
 
+        compositeDisposable.clear()
+
         presenter.detach()
     }
 
-    override fun updateState(state: AppListState) {
-        binder.setVariable(BR.state, state)
+    override fun showList() {
+        recyclerView?.visibility = View.VISIBLE
+    }
+
+    override fun hideList() {
+        recyclerView?.visibility = View.GONE
+    }
+
+    override fun showInput() {
+        searchEditText?.visibility = View.VISIBLE
+    }
+
+    override fun hideInput() {
+        searchEditText?.visibility = View.GONE
+    }
+
+    override fun showLoadingIndicator() {
+        progressBar?.visibility = View.VISIBLE
+    }
+
+    override fun hideLoadingIndicator() {
+        progressBar?.visibility = View.GONE
+    }
+
+    override fun showNoResults() {
+        // TODO
+    }
+
+    override fun hideNoResults() {
+        // TODO
+    }
+
+    override fun showNoApps() {
+        // TODO
+    }
+
+    override fun hideNoApps() {
+        // TODO
     }
 
     override fun goToApp(launchIntent: Intent) {
