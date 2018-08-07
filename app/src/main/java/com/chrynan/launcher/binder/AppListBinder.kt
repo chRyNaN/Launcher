@@ -1,40 +1,41 @@
 package com.chrynan.launcher.binder
 
-import com.chrynan.launcher.model.*
+import com.chrynan.launcher.model.state.AppListState
 import com.chrynan.launcher.ui.view.AppListView
+import com.chrynan.launcher.util.perform
 import javax.inject.Inject
 
 class AppListBinder @Inject constructor(override val view: AppListView) : Binder<AppListState, AppListView> {
 
     override fun bind(stateModel: AppListState) =
             when (stateModel) {
-                LoadingState -> {
-                    view.showLoadingIndicator()
-                    view.hideList()
-                    view.hideNoApps()
-                    view.hideNoResults()
-                    view.hideInput()
+                AppListState.LoadingState -> view.perform {
+                    showLoadingIndicator()
+                    hideList()
+                    hideNoApps()
+                    hideNoResults()
+                    hideInput()
                 }
-                ListState -> {
-                    view.showList()
-                    view.showInput()
-                    view.hideLoadingIndicator()
-                    view.hideNoApps()
-                    view.hideNoResults()
+                AppListState.ListState -> view.perform {
+                    showList()
+                    showInput()
+                    hideLoadingIndicator()
+                    hideNoApps()
+                    hideNoResults()
                 }
-                NoResultsState -> {
-                    view.showNoResults()
-                    view.showInput()
-                    view.hideLoadingIndicator()
-                    view.hideNoApps()
-                    view.hideList()
+                AppListState.NoResultsState -> view.perform {
+                    showNoResults()
+                    showInput()
+                    hideLoadingIndicator()
+                    hideNoApps()
+                    hideList()
                 }
-                NoAppsState -> {
-                    view.showNoApps()
-                    view.hideLoadingIndicator()
-                    view.hideList()
-                    view.hideNoResults()
-                    view.hideInput()
+                AppListState.NoAppsState -> view.perform {
+                    showNoApps()
+                    hideLoadingIndicator()
+                    hideList()
+                    hideNoResults()
+                    hideInput()
                 }
             }
 }
