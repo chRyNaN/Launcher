@@ -2,11 +2,8 @@ package com.chrynan.launcher.logging
 
 import com.chrynan.launcher.BuildConfig
 import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class Logger @Inject constructor() : Loggable,
+object Logger : Loggable,
         LogInitializer {
 
     override fun init() {

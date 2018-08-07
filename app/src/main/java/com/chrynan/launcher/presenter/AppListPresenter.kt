@@ -2,8 +2,6 @@ package com.chrynan.launcher.presenter
 
 import com.chrynan.launcher.R
 import com.chrynan.launcher.binder.AppListBinder
-import com.chrynan.launcher.logging.Loggable
-import com.chrynan.launcher.logging.Logger
 import com.chrynan.launcher.model.AppListSearchViewModel
 import com.chrynan.launcher.model.state.AppListState
 import com.chrynan.launcher.ui.adapter.core.DiffProcessor
@@ -21,10 +19,8 @@ class AppListPresenter @Inject constructor(
         private val getAllAppListViewModelsUseCase: GetAllAppListViewModelsUseCase,
         private val searchForApplicationByNameUseCase: SearchForApplicationByNameUseCase,
         private val listUpdater: ListUpdater,
-        private val diffProcessor: DiffProcessor,
-        private val logger: Logger
-) : BasePresenter(),
-        Loggable by logger {
+        private val diffProcessor: DiffProcessor
+) : BasePresenter() {
 
     private val googlePlaySearchButtonText by string(R.string.google_play_store_search_button)
 

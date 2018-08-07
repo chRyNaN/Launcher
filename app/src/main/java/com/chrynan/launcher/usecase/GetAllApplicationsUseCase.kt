@@ -3,8 +3,6 @@ package com.chrynan.launcher.usecase
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import com.chrynan.launcher.logging.Loggable
-import com.chrynan.launcher.logging.Logger
 import com.chrynan.launcher.mapper.AppMapper
 import com.chrynan.launcher.model.AppMask
 import com.chrynan.launcher.model.LauncherItem
@@ -21,10 +19,8 @@ class GetAllApplicationsUseCase @Inject constructor(
         private val applicationInfoRepository: ApplicationInfoRepository,
         private val appMaskRepository: AppMaskRepository,
         private val getBadgeForPackageNameUseCase: GetBadgeForPackageNameUseCase,
-        private val mapper: AppMapper,
-        private val logger: Logger
-) : NoParamUseCase<Single<List<LauncherItem.SingleItem.App>>>,
-        Loggable by logger {
+        private val mapper: AppMapper
+) : NoParamUseCase<Single<List<LauncherItem.SingleItem.App>>>() {
 
     override fun execute(param: Nothing?): Single<List<LauncherItem.SingleItem.App>> =
             applicationInfoRepository.getAll()

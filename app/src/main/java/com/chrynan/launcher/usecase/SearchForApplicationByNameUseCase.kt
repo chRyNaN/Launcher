@@ -1,17 +1,11 @@
 package com.chrynan.launcher.usecase
 
-import com.chrynan.launcher.logging.Loggable
-import com.chrynan.launcher.logging.Logger
 import com.chrynan.launcher.model.AppListViewModel
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class SearchForApplicationByNameUseCase @Inject constructor(
-        private val getAllAppListViewModelsUseCase: GetAllAppListViewModelsUseCase,
-        private val logger: Logger
-) : UseCase<CharSequence, Single<List<AppListViewModel>>>,
-        Loggable by logger {
+class SearchForApplicationByNameUseCase @Inject constructor(private val getAllAppListViewModelsUseCase: GetAllAppListViewModelsUseCase) : BaseUseCase<CharSequence, Single<List<AppListViewModel>>>() {
 
     override fun execute(param: CharSequence): Single<List<AppListViewModel>> =
             getAllAppListViewModelsUseCase.execute()
