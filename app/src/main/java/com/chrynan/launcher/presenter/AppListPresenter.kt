@@ -1,6 +1,5 @@
 package com.chrynan.launcher.presenter
 
-import android.content.Context
 import com.chrynan.launcher.R
 import com.chrynan.launcher.binder.AppListBinder
 import com.chrynan.launcher.logging.Loggable
@@ -18,17 +17,16 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class AppListPresenter @Inject constructor(
-        private val context: Context,
         private val binder: AppListBinder,
         private val getAllAppListViewModelsUseCase: GetAllAppListViewModelsUseCase,
         private val searchForApplicationByNameUseCase: SearchForApplicationByNameUseCase,
         private val listUpdater: ListUpdater,
         private val diffProcessor: DiffProcessor,
         private val logger: Logger
-) : Presenter,
+) : BasePresenter(),
         Loggable by logger {
 
-    private val googlePlaySearchButtonText by lazy { context.getString(R.string.google_play_store_search_button) }
+    private val googlePlaySearchButtonText by string(R.string.google_play_store_search_button)
 
     private val compositeDisposable = CompositeDisposable()
 

@@ -14,7 +14,7 @@ class HomePresenter @Inject constructor(
         private val view: HomeView,
         private val getAllAppListViewModelsUseCase: GetAllAppListViewModelsUseCase,
         private val shortcutInfoRepository: ShortcutInfoRepository
-) : Presenter {
+) : BasePresenter() {
 
     @Inject
     lateinit var launcherApps: LauncherApps

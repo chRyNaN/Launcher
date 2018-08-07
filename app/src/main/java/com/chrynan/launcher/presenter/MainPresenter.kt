@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
         private val logger: Logger
-) : Presenter {
+) : BasePresenter() {
 
     override fun detach() {
         // No-Op
