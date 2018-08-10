@@ -9,8 +9,11 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.ViewConfiguration
+import android.widget.EditText
 import android.widget.TextView
 import com.chrynan.launcher.ui.binding.setVisibleOrGone
+import com.jakewharton.rxbinding2.widget.textChanges
+import java.util.concurrent.TimeUnit
 
 val Context.hasVirtualNavigationBar
     get() = !ViewConfiguration.get(this).hasPermanentMenuKey()
@@ -76,3 +79,5 @@ fun View.centerYWithRespectToPadding(height: Int) =
         paddingTop + ((height - verticalPadding) / 2)
 
 fun RectF.copy() = RectF(left, top, right, bottom)
+
+fun EditText?.handleTextChanges() = this?.textChanges()?.debounce(250L, TimeUnit.MILLISECONDS)

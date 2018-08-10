@@ -2,6 +2,8 @@ package com.chrynan.launcher.util
 
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 fun <T, R> Observable<List<T>>.mapEachFromEmittedList(map: (T) -> R): Observable<List<R>> =
         flatMapSingle {
@@ -22,3 +24,5 @@ fun <T> Observable<List<T>>.sortEachAlphabeticallyBy(selector: (T) -> String): O
 
 fun <T> Single<List<T>>.sortEachAlphabeticallyBy(selector: (T) -> String): Single<List<T>> =
         map { it.sortAlphabeticallyBy(selector) }
+
+operator fun CompositeDisposable.plusAssign(d: Disposable?) = d?.perform { add(this) } ?: Unit

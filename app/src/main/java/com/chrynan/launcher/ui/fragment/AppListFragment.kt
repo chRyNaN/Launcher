@@ -17,11 +17,12 @@ import com.chrynan.launcher.ui.adapter.core.AdapterViewTypes
 import com.chrynan.launcher.ui.adapter.core.ManagerAdapter
 import com.chrynan.launcher.ui.grid.DynamicSpanGridLayoutManager
 import com.chrynan.launcher.ui.view.AppListView
+import com.chrynan.launcher.util.handleTextChanges
+import com.chrynan.launcher.util.orUnit
+import com.chrynan.launcher.util.plusAssign
 import com.chrynan.launcher.util.virtualNavigationBarHeight
-import com.jakewharton.rxbinding2.widget.textChanges
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_app_list.*
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class AppListFragment : BaseFragment(),
@@ -29,11 +30,6 @@ class AppListFragment : BaseFragment(),
         AppListNavigator,
         AppListAdapter.ClickListener,
         AppListSearchAdapter.ClickListener {
-
-    companion object {
-
-        private const val DEBOUNCE_INPUT_MILLISECONDS = 250L
-    }
 
     override val listenerVariableId: Int = BR.listener
 
@@ -62,15 +58,11 @@ class AppListFragment : BaseFragment(),
             setPaddingRelative(0, 0, 0, paddingBottom + context.virtualNavigationBarHeight)
         }
 
-        searchEditText?.let {
-            compositeDisposable.add(
-                    it.textChanges()
-                            .debounce(DEBOUNCE_INPUT_MILLISECONDS, TimeUnit.MILLISECONDS)
-                            .flatMapCompletable { presenter.search(it) }
-                            .subscribe({},
-                                    { logError(it, "Error listening to text changes.") })
-            )
-        }
+        compositeDisposable +=
+                searchEditText?.handleTextChanges()
+                        ?.flatMapCompletable { presenter.search(it) }
+                        ?.subscribe({},
+                                { logError(it, "Error listening to text changes.") })
 
         presenter.getAllApplications()
     }
@@ -129,9 +121,7 @@ class AppListFragment : BaseFragment(),
         // TODO
     }
 
-    override fun goToApp(launchIntent: Intent) {
-        startActivity(launchIntent)
-    }
+    override fun goToApp(launchIntent: Intent) = startActivity(launchIntent)
 
     override fun goToGooglePlayStoreWithSearch(search: String) {
         // TODO Note this could crash if there is no google play store app installed on the device
@@ -139,11 +129,7 @@ class AppListFragment : BaseFragment(),
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=$search&c=apps")))
     }
 
-    override fun onAppItemClick(app: LauncherItem.SingleItem.App) {
-        goToApp(app.launchIntent)
-    }
+    override fun onAppItemClick(app: LauncherItem.SingleItem.App) = goToApp(app.launchIntent)
 
-    override fun onSearchButtonClick() {
-        searchEditText?.let { goToGooglePlayStoreWithSearch(it.text.toString()) }
-    }
+    override fun onSearchButtonClick() = searchEditText?.let { goToGooglePlayStoreWithSearch(it.text.toString()) }.orUnit()
 }
