@@ -1,6 +1,8 @@
 package com.chrynan.launcher.ui.grid
 
 import android.view.View
+import com.chrynan.launcher.util.ColumnCount
+import com.chrynan.launcher.util.RowCount
 
 const val DEFAULT_COLUMN_COUNT = 1
 const val DEFAULT_ROW_COUNT = 1

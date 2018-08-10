@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import com.chrynan.launcher.R
-import com.chrynan.launcher.util.measureSpec
+import com.chrynan.launcher.util.*
 
 open class DynamicGridView : ViewGroup {
 

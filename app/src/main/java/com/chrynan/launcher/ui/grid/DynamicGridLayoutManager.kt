@@ -2,6 +2,7 @@ package com.chrynan.launcher.ui.grid
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import com.chrynan.launcher.util.*
 
 class DynamicGridLayoutManager : RecyclerView.LayoutManager() {
 

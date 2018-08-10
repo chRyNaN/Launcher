@@ -61,9 +61,6 @@ fun TextView.setTextOrGone(textToSet: String?) {
     setVisibleOrGone(textToSet != null)
 }
 
-typealias MeasureSpecSize = Int
-typealias MeasureSpecMode = Int
-
 fun measureSpec(size: MeasureSpecSize, mode: MeasureSpecMode) = View.MeasureSpec.makeMeasureSpec(size, mode)
 
 val View.horizontalPadding: Int
