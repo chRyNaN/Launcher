@@ -3,15 +3,14 @@ package com.chrynan.launcher.ui.widget
 import android.content.Context
 import android.util.AttributeSet
 import com.chrynan.launcher.R
+import com.chrynan.launcher.delegates.ReconstructOnSetDelegate
 import com.chrynan.launcher.ui.grid.DynamicGridView
 import com.chrynan.launcher.util.measureSpec
-import com.chrynan.launcher.util.setAndReconstruct
 import com.chrynan.launcher.util.virtualNavigationBarHeight
 
 class DockView : DynamicGridView {
 
-    var includeBottomNavBar = true
-        set(value) = setAndReconstruct { field = value }
+    var includeBottomNavBar by ReconstructOnSetDelegate(true)
 
     private var dockItemHeight = context.resources.getDimensionPixelSize(R.dimen.dock_item_default_size)
 

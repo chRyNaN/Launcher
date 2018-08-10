@@ -7,9 +7,9 @@ import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import com.chrynan.launcher.R
+import com.chrynan.launcher.delegates.ReconstructOnSetDelegate
 import com.chrynan.launcher.model.LauncherItem
 import com.chrynan.launcher.ui.icon.*
-import com.chrynan.launcher.util.setAndReconstruct
 import com.chrynan.launcher.util.setTextOrGone
 import kotlinx.android.synthetic.main.layout_launcher_item.view.*
 
@@ -103,16 +103,12 @@ class LauncherItemView : ConstraintLayout {
             nameTextView?.setTextColor(value)
         }
 
-    @Dimension
-    private var iconSize = context.resources.getDimensionPixelSize(R.dimen.launcher_icon_size)
-        set(value) = setAndReconstruct {
-            field = value
-
-            iconImageView?.apply {
-                layoutParams.width = value
-                layoutParams.height = value
-            }
+    private var iconSize by ReconstructOnSetDelegate(context.resources.getDimensionPixelSize(R.dimen.launcher_icon_size)) {
+        iconImageView?.apply {
+            layoutParams.width = it
+            layoutParams.height = it
         }
+    }
 
     constructor(context: Context) : this(context, null)
 

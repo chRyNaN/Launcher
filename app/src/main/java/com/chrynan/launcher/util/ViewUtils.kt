@@ -49,13 +49,6 @@ fun Drawable.toBitmap(): Bitmap {
     return bitmap
 }
 
-fun View.setAndReconstruct(setter: () -> Unit) {
-    setter()
-
-    requestLayout()
-    invalidate()
-}
-
 fun TextView.setTextOrGone(textToSet: String?) {
     text = textToSet
     setVisibleOrGone(textToSet != null)

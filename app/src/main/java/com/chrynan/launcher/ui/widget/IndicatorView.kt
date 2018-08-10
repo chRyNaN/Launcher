@@ -13,7 +13,11 @@ import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.View
 import com.chrynan.launcher.R
-import com.chrynan.launcher.util.*
+import com.chrynan.launcher.delegates.ReconstructOnSetDelegate
+import com.chrynan.launcher.util.centerXWithRespectToPadding
+import com.chrynan.launcher.util.centerYWithRespectToPadding
+import com.chrynan.launcher.util.copy
+import com.chrynan.launcher.util.measureSpec
 import kotlin.math.min
 
 typealias IndicatorCount = Int
@@ -35,8 +39,7 @@ class IndicatorView : View,
 
     val bottomSheetIndicatorScrollCallback by lazy { BottomSheetIndicatorScrollCallback(this) }
 
-    var indicatorCount: IndicatorCount = DEFAULT_PAGE_COUNT
-        set(value) = setAndReconstruct { field = value }
+    var indicatorCount: IndicatorCount by ReconstructOnSetDelegate(DEFAULT_PAGE_COUNT)
 
     private val selectedIndicatorBounds = RectF()
     private val defaultUnselectedIndicatorBounds = RectF()
