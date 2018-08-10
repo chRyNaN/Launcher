@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chrynan.launcher.BR
 import com.chrynan.launcher.R
 import com.chrynan.launcher.model.LauncherItem
 import com.chrynan.launcher.navigator.AppListNavigator
 import com.chrynan.launcher.presenter.AppListPresenter
+import com.chrynan.launcher.ui.adapter.AdapterViewTypes
 import com.chrynan.launcher.ui.adapter.AppListAdapter
 import com.chrynan.launcher.ui.adapter.AppListSearchAdapter
-import com.chrynan.launcher.ui.adapter.core.AdapterViewTypes
 import com.chrynan.launcher.ui.adapter.core.ManagerAdapter
 import com.chrynan.launcher.ui.grid.DynamicSpanGridLayoutManager
 import com.chrynan.launcher.ui.view.AppListView
@@ -30,8 +29,6 @@ class AppListFragment : BaseFragment(),
         AppListNavigator,
         AppListAdapter.ClickListener,
         AppListSearchAdapter.ClickListener {
-
-    override val listenerVariableId: Int = BR.listener
 
     @Inject
     lateinit var presenter: AppListPresenter

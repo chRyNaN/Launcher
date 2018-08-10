@@ -1,4 +1,4 @@
-package com.chrynan.launcher.ui.adapter.core
+package com.chrynan.launcher.ui.adapter
 
 object AdapterViewTypes {
 

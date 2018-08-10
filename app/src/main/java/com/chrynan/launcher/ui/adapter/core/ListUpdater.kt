@@ -5,5 +5,7 @@ import com.chrynan.launcher.model.AdapterViewModel
 
 interface ListUpdater {
 
+    val items: List<AdapterViewModel>
+
     fun updateItems(diffResult: DiffUtil.DiffResult, newItems: List<AdapterViewModel>)
 }

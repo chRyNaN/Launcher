@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewConfiguration
 import android.widget.EditText
 import android.widget.TextView
-import com.chrynan.launcher.ui.binding.setVisibleOrGone
+import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.textChanges
 import java.util.concurrent.TimeUnit
 
@@ -81,3 +81,9 @@ fun View.centerYWithRespectToPadding(height: Int) =
 fun RectF.copy() = RectF(left, top, right, bottom)
 
 fun EditText?.handleTextChanges() = this?.textChanges()?.debounce(250L, TimeUnit.MILLISECONDS)
+
+fun View?.handleClicks() = this?.clicks()?.throttleFirst(1000L, TimeUnit.MILLISECONDS)
+
+fun View.setVisibleOrGone(isVisible: Boolean) {
+    visibility = if (isVisible) View.VISIBLE else View.GONE
+}

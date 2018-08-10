@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-
-        <variable
-            name="model"
-            type="com.chrynan.launcher.model.AppListViewModel"/>
-
-        <variable
-            name="listener"
-            type="com.chrynan.launcher.ui.adapter.AppListAdapter.ClickListener"/>
-
-    </data>
-
-    <com.chrynan.launcher.ui.widget.LauncherItemView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:onClick="@{() -> listener.onAppItemClick(model.app)}"
-        android:padding="@dimen/spacing_xsmall"
-        app:launcherItem="@{model.app}"/>
-
-</layout>
+<com.chrynan.launcher.ui.widget.LauncherItemView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/launcherItemView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="@dimen/spacing_xsmall"/>

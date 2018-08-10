@@ -14,7 +14,7 @@ import com.chrynan.launcher.R
 import com.chrynan.launcher.model.Badge
 import com.chrynan.launcher.model.LauncherItem
 import com.chrynan.launcher.model.hasBadge
-import com.chrynan.launcher.ui.binding.setVisibleOrGone
+import com.chrynan.launcher.util.setVisibleOrGone
 import com.chrynan.launcher.util.toBitmap
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers

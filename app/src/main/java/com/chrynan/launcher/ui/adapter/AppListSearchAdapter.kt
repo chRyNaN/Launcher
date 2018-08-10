@@ -1,29 +1,28 @@
 package com.chrynan.launcher.ui.adapter
 
-import com.chrynan.launcher.BR
+import android.view.View
 import com.chrynan.launcher.R
-import com.chrynan.launcher.model.AdapterViewModel
 import com.chrynan.launcher.model.AppListSearchViewModel
-import com.chrynan.launcher.ui.adapter.core.AdapterViewTypes
-import com.chrynan.launcher.ui.adapter.core.DataBindAdapter
+import com.chrynan.launcher.ui.adapter.core.BaseDelegateAdapter
+import com.chrynan.launcher.util.handleClicks
+import kotlinx.android.synthetic.main.adapter_app_list_search.view.*
 import javax.inject.Inject
 
-class AppListSearchAdapter @Inject constructor(private val listener: ClickListener) : DataBindAdapter {
+class AppListSearchAdapter @Inject constructor(private val listener: ClickListener) : BaseDelegateAdapter<AppListSearchViewModel>() {
 
     override val viewType = AdapterViewTypes.APP_SEARCH
 
     override val viewResourceId = R.layout.adapter_app_list_search
 
-    override val viewModelVariableId = BR.model
+    override fun handlesModelType(item: AppListSearchViewModel) = true
 
-    override fun handlesViewItem(item: AdapterViewModel) = item is AppListSearchViewModel
+    override fun View.bindModelType(item: AppListSearchViewModel) {
+        searchButton?.text = item.text
+        searchButton?.handleClicks()?.subscribe({ listener.onSearchButtonClick() },
+                { logError(it, "Error handling click in ${AppListSearchAdapter::class.java.name} for ${AppListSearchViewModel::class.java.name} = $item.") })
+    }
 
-    override fun getListener() = listener
-
-    interface ClickListener : DataBindAdapter.Listener {
-
-        override val listenerVariableId: Int
-            get() = 0
+    interface ClickListener {
 
         fun onSearchButtonClick()
     }

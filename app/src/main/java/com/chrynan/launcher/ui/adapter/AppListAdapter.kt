@@ -1,30 +1,29 @@
 package com.chrynan.launcher.ui.adapter
 
-import com.chrynan.launcher.BR
+import android.view.View
 import com.chrynan.launcher.R
-import com.chrynan.launcher.model.AdapterViewModel
 import com.chrynan.launcher.model.AppListViewModel
 import com.chrynan.launcher.model.LauncherItem
-import com.chrynan.launcher.ui.adapter.core.AdapterViewTypes
-import com.chrynan.launcher.ui.adapter.core.DataBindAdapter
+import com.chrynan.launcher.ui.adapter.core.BaseDelegateAdapter
+import com.chrynan.launcher.util.handleClicks
+import kotlinx.android.synthetic.main.adapter_app_list.view.*
 import javax.inject.Inject
 
-class AppListAdapter @Inject constructor(private val listener: ClickListener) : DataBindAdapter {
+class AppListAdapter @Inject constructor(private val listener: ClickListener) : BaseDelegateAdapter<AppListViewModel>() {
 
     override val viewType = AdapterViewTypes.APP_LIST
 
     override val viewResourceId = R.layout.adapter_app_list
 
-    override val viewModelVariableId = BR.model
+    override fun handlesModelType(item: AppListViewModel) = true
 
-    override fun handlesViewItem(item: AdapterViewModel) = item is AppListViewModel
+    override fun View.bindModelType(item: AppListViewModel) {
+        launcherItemView?.launcherItem = item.app
+        launcherItemView?.handleClicks()?.subscribe({ listener.onAppItemClick(item.app) },
+                { logError(it, "Error handling click in ${AppListAdapter::class.java.name} for ${AppListViewModel::class.java.name} = $item.") })
+    }
 
-    override fun getListener() = listener
-
-    interface ClickListener : DataBindAdapter.Listener {
-
-        override val listenerVariableId
-            get() = BR.listener
+    interface ClickListener {
 
         fun onAppItemClick(app: LauncherItem.SingleItem.App)
     }
