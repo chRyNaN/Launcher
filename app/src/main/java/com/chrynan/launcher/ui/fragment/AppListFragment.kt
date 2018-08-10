@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.chrynan.launcher.BR
 import com.chrynan.launcher.R
-import com.chrynan.launcher.logging.Logger
 import com.chrynan.launcher.model.LauncherItem
 import com.chrynan.launcher.navigator.AppListNavigator
 import com.chrynan.launcher.presenter.AppListPresenter
@@ -44,9 +43,6 @@ class AppListFragment : BaseFragment(),
     @Inject
     lateinit var appAdapter: ManagerAdapter
 
-    @Inject
-    lateinit var logger: Logger
-
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -72,7 +68,7 @@ class AppListFragment : BaseFragment(),
                             .debounce(DEBOUNCE_INPUT_MILLISECONDS, TimeUnit.MILLISECONDS)
                             .flatMapCompletable { presenter.search(it) }
                             .subscribe({},
-                                    { logger.logError(it, "Error listening to text changes.") })
+                                    { logError(it, "Error listening to text changes.") })
             )
         }
 

@@ -1,11 +1,17 @@
 package com.chrynan.launcher.ui.activity
 
 import android.support.v4.app.NavUtils
+import com.chrynan.launcher.logging.Loggable
+import com.chrynan.launcher.logging.Logger
 import com.chrynan.launcher.navigator.Navigator
+import com.chrynan.launcher.resources.ResourceFetcher
+import com.chrynan.launcher.resources.ResourceProvider
 import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : DaggerAppCompatActivity(),
-        Navigator {
+        Navigator,
+        Loggable by Logger,
+        ResourceFetcher by ResourceProvider {
 
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 0) {
