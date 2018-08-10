@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewConfiguration
 import android.widget.EditText
 import android.widget.TextView
+import com.chrynan.launcher.resources.ResourceProvider
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.textChanges
 import java.util.concurrent.TimeUnit
@@ -77,3 +78,11 @@ fun View?.handleClicks() = this?.clicks()?.throttleFirst(1000L, TimeUnit.MILLISE
 fun View.setVisibleOrGone(isVisible: Boolean) {
     visibility = if (isVisible) View.VISIBLE else View.GONE
 }
+
+fun View.string(resourceId: ResourceId) = ResourceProvider.string(resourceId)
+
+fun View.dimensionPixelOffset(resourceId: ResourceId) = ResourceProvider.dimensionPixelOffset(resourceId)
+
+fun View.dimensionPixelSize(resourceId: ResourceId) = ResourceProvider.dimensionPixelSize(resourceId)
+
+fun View.color(resourceId: ResourceId) = ResourceProvider.color(resourceId)

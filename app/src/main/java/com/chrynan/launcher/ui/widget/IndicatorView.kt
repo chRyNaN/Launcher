@@ -14,10 +14,7 @@ import android.util.AttributeSet
 import android.view.View
 import com.chrynan.launcher.R
 import com.chrynan.launcher.delegates.ReconstructOnSetDelegate
-import com.chrynan.launcher.util.centerXWithRespectToPadding
-import com.chrynan.launcher.util.centerYWithRespectToPadding
-import com.chrynan.launcher.util.copy
-import com.chrynan.launcher.util.measureSpec
+import com.chrynan.launcher.util.*
 import kotlin.math.min
 
 typealias IndicatorCount = Int
@@ -40,6 +37,12 @@ class IndicatorView : View,
     val bottomSheetIndicatorScrollCallback by lazy { BottomSheetIndicatorScrollCallback(this) }
 
     var indicatorCount: IndicatorCount by ReconstructOnSetDelegate(DEFAULT_PAGE_COUNT)
+
+    private val defaultSelectedIndicatorColor by color(R.color.indicator_view_default_selected_indicator_color)
+    private val defaultUnselectedIndicatorColor by color(R.color.indicator_view_default_unselected_indicator_color)
+    private val defaultIndicatorWidth by dimensionPixelSize(R.dimen.indicator_view_default_indicator_width)
+    private val defaultIndicatorHeight by dimensionPixelSize(R.dimen.indicator_view_default_indicator_height)
+    private val defaultIndicatorPadding by dimensionPixelOffset(R.dimen.indicator_view_default_indicator_padding)
 
     private val selectedIndicatorBounds = RectF()
     private val defaultUnselectedIndicatorBounds = RectF()
@@ -66,23 +69,23 @@ class IndicatorView : View,
         }
 
     @ColorInt
-    private var selectedIndicatorColor = context.getColor(R.color.indicator_view_default_selected_indicator_color)
+    private var selectedIndicatorColor = defaultSelectedIndicatorColor
         set(value) {
             field = value
 
             selectedIndicatorPaint.color = value
         }
     @ColorInt
-    private var unselectedIndicatorColor = context.getColor(R.color.indicator_view_default_unselected_indicator_color)
+    private var unselectedIndicatorColor = defaultUnselectedIndicatorColor
         set(value) {
             field = value
 
             unselectedIndicatorPaint.color = value
         }
     @Dimension
-    private var indicatorWidth = context.resources.getDimensionPixelSize(R.dimen.indicator_view_default_indicator_width)
+    private var indicatorWidth = defaultIndicatorWidth
     @Dimension
-    private var indicatorHeight = context.resources.getDimensionPixelSize(R.dimen.indicator_view_default_indicator_height)
+    private var indicatorHeight = defaultIndicatorHeight
         set(value) {
             field = value
 
@@ -90,7 +93,7 @@ class IndicatorView : View,
             unselectedIndicatorPaint.strokeWidth = value.toFloat()
         }
     @Dimension
-    private var indicatorPadding = context.resources.getDimensionPixelOffset(R.dimen.indicator_view_default_indicator_padding)
+    private var indicatorPadding = defaultIndicatorPadding
 
     constructor(context: Context) : this(context, null)
 

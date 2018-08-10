@@ -10,6 +10,8 @@ import com.chrynan.launcher.R
 import com.chrynan.launcher.delegates.ReconstructOnSetDelegate
 import com.chrynan.launcher.model.LauncherItem
 import com.chrynan.launcher.ui.icon.*
+import com.chrynan.launcher.util.color
+import com.chrynan.launcher.util.dimensionPixelSize
 import com.chrynan.launcher.util.setTextOrGone
 import kotlinx.android.synthetic.main.layout_launcher_item.view.*
 
@@ -61,8 +63,13 @@ class LauncherItemView : ConstraintLayout {
     private val folderIconResolver by lazy { FolderIconResolver(context) }
     private val badgeIconResolver by lazy { BadgeIconResolver(context) }
 
+    private val defaultSmallBadgeSize by dimensionPixelSize(R.dimen.badge_small_size_default)
+    private val defaultLargeBadgeSize by dimensionPixelSize(R.dimen.badge_large_size_default)
+    private val defaultFolderBackgroundColor by color(R.color.launcher_item_view_default_folder_background_color)
+    private val defaultTextColor by color(R.color.launcher_item_view_default_text_color)
+
     @Dimension
-    private var badgeSmallSize = context.resources.getDimensionPixelSize(R.dimen.badge_small_size_default)
+    private var badgeSmallSize = defaultSmallBadgeSize
         set(value) {
             field = value
 
@@ -71,7 +78,7 @@ class LauncherItemView : ConstraintLayout {
         }
 
     @Dimension
-    private var badgeLargeSize = context.resources.getDimensionPixelSize(R.dimen.badge_large_size_default)
+    private var badgeLargeSize = defaultLargeBadgeSize
         set(value) {
             field = value
 
@@ -80,7 +87,7 @@ class LauncherItemView : ConstraintLayout {
         }
 
     @ColorInt
-    private var defaultBadgeColor = context.getColor(R.color.badge_default_color)
+    private var defaultBadgeColor = color(R.color.badge_default_color).value
         set(value) {
             field = value
 
@@ -88,7 +95,7 @@ class LauncherItemView : ConstraintLayout {
         }
 
     @ColorInt
-    private var folderBackgroundColor = context.getColor(R.color.launcher_item_view_default_folder_background_color)
+    private var folderBackgroundColor = defaultFolderBackgroundColor
         set(value) {
             field = value
 
@@ -96,7 +103,7 @@ class LauncherItemView : ConstraintLayout {
         }
 
     @ColorInt
-    private var textColor = context.getColor(R.color.launcher_item_view_default_text_color)
+    private var textColor = defaultTextColor
         set(value) {
             field = value
 
