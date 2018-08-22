@@ -9,23 +9,20 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'io.objectbox'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion Android.COMPILE_SDK_VERSION
     defaultConfig {
-        applicationId "com.chrynan.launcher"
-        minSdkVersion 23
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        applicationId Android.APPLICATION_ID
+        minSdkVersion Android.MIN_SDK_VERSION
+        targetSdkVersion Android.TARGET_SDK_VERSION
+        versionCode Android.VERSION_CODE
+        versionName Android.VERSION_NAME
+        testInstrumentationRunner Android.TEST_INSTRUMENTATION_RUNNER
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    dataBinding {
-        enabled = true
     }
 }
 
@@ -34,38 +31,38 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Libraries.KOTLIN_JDK
 
     // Android
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:palette-v7:27.1.1'
+    implementation Libraries.ANDROID_SUPPORT_APPCOMPAT
+    implementation Libraries.ANDROID_SUPPORT_DESIGN
+    implementation Libraries.ANDROID_SUPPORT_PALETTE
+    implementation Libraries.CONSTRAINT_LAYOUT
 
     // Dagger2 - Dependency Injection
-    kapt 'com.google.dagger:dagger-compiler:2.16'
-    kapt 'com.google.dagger:dagger-android-processor:2.16'
-    implementation 'com.google.dagger:dagger:2.16'
-    implementation 'com.google.dagger:dagger-android-support:2.16'
-    implementation 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.1.1'
+    kapt Libraries.DAGGER_COMPILER
+    kapt Libraries.DAGGER_ANDROID_PROCESSOR
+    implementation Libraries.DAGGER
+    implementation Libraries.DAGGER_ANDROID_SUPPORT
 
     // Glide - Image Loading
-    implementation 'com.github.bumptech.glide:glide:4.7.1'
-    kapt 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation Libraries.GLIDE
+    kapt Libraries.GLIDE_COMPILER
 
     // RxJava - Reactive Programming
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation Libraries.RX_JAVA
+    implementation Libraries.RX_ANDROID
+    implementation Libraries.RX_BINDING
 
     // Timber - Logging
-    implementation 'com.jakewharton.timber:timber:4.7.0'
+    implementation Libraries.TIMBER
 
     // ObjectBox - Database
-    implementation "io.objectbox:objectbox-android:$objectboxVersion"
-    implementation "io.objectbox:objectbox-kotlin:$objectboxVersion"
+    implementation Libraries.OBJECT_BOX_ANDROID
+    implementation Libraries.OBJECT_BOX_KOTLIN
 
     // Testing
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation Libraries.J_UNIT
+    androidTestImplementation Libraries.TEST_RUNNER
+    androidTestImplementation Libraries.ESPRESSO
 }
